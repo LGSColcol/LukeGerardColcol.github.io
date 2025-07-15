@@ -1,58 +1,20 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Portfolio</title>
+    <title>Luke Gerard S. Colcol's Portfolio</title>
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <h1>Welcome to my Portfolio!</h1>
+            <h1>Luke Gerard S. Colcol</h1>
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -61,9 +23,9 @@
     <!-- Hero Section with Profile Picture -->
     <section class="hero">
         <div class="container">
-            <img src="images/profile.png" alt="Your Profile Picture">
+            <img src="images/profile.png">
             <div class="hero-text">
-                <h2>Luke Gerard S. Colcol </h2>
+                <h2>Welcome to my Portfolio!</h2>
                 <p>Bachelor Science in Information Technology</p>
             </div>
         </div>
@@ -83,8 +45,7 @@
                 as well as working with Arduino for sensor-based projects.
                 Through my academic projects, including a capstone on IoT-based 
                 aquaponics monitoring, I’ve gained hands-on experience in designing 
-                user-friendly applications and integrating hardware with software. 
-                  
+                user-friendly applications and integrating hardware with software.
             </p>
         </div>
     </section>
@@ -105,7 +66,7 @@
                     <h3>Year 3 Project</h3>
                     <p>An IoT-based visitor tracking system using IR sensors and 
                         Arduino to monitor entries in closed spaces like hotels or
-                         restaurants, displayed on a web dashboard.</p>
+                        restaurants, displayed on a web dashboard.</p>
                     <a href="year3.html">View Project</a>
                 </div>
                 <!-- Year 4 Project -->
@@ -118,12 +79,33 @@
         </div>
     </section>
 
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="container">
+            <h2>Certifications</h2>
+            <p>
+                Throughout my academic journey at Mapúa Malayan Colleges Laguna, 
+                I have earned certifications that validate my skills in web development and IoT. 
+                These include certifications in CompTia ITF+, Cisco, and other Training Programs obtained through platforms
+                 like Cisco Networking Academy, Seminars and institutional training programs, enhancing my expertise in building
+                  scalable applications and IoT systems.
+            </p>
+            <div class="certifications-grid">
+                <img src="images/Certificate1.jpg" alt="ASP.NET Core Certification">
+                <img src="images/Certificate2.png" alt="Flutter Development Certification">
+                <img src="images/Certificate3.png" alt="Arduino Programming Certification">
+                <img src="images/Certificate4.png" alt="Web Development Certification">
+                <img src="images/Certificate5.png" alt="Software Engineering Certification" class="fifth-image">
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <h2>Get in Touch</h2>
             <p>Feel free to reach out for collaborations or just a friendly chat!</p>
-             <p>lgscolcol@gmail.com | Contact No.: 09273277412</p>
+            <p><a href="mailto:lgscolcol@gmail.com">lgscolcol@gmail.com</a> | Contact No.: 09273277412</p>
         </div>
     </section>
 

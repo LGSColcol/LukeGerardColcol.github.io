@@ -261,11 +261,57 @@ section.project-content h2 {
     margin-top: 1.5rem;
 }
 
-.video-grid iframe {
+.video-grid iframe, .video-grid video {
     width: 100%;
-    height: 150px; /* Adjusted for smaller video embeds */
+    height: 150px;
     border-radius: 0.25rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Certifications Section */
+section#certifications {
+    padding: 4rem 1rem;
+    background-color: #ffffff;
+}
+
+section#certifications .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section#certifications h2 {
+    font-size: 1.875rem;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+section#certifications p {
+    color: #4b5563;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    text-align: justify;
+}
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.certifications-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+.certifications-grid .fifth-image {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    margin: 1rem auto 0;
 }
 
 /* Contact Section */
